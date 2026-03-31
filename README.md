@@ -112,7 +112,6 @@
 
 ## 🌐 Site e Distribuição
 
-- **Site do jogo:** *(inserir URL)*
 - **Página no itch.io:** *(inserir URL)*
 
 ---
@@ -121,15 +120,10 @@
 
 | Nome | Função |
 |---|---|
-| *(nome)* | *(função)* |
-| *(nome)* | *(função)* |
-| *(nome)* | *(função)* |
-
----
-
-## 📝 Licença
-
-*(Inserir informações de licença do projeto aqui.)*
+| *Gabriel da Silva Bitencourt* | *(função)* |
+| *Gabriel Halim* | *(função)* |
+| *Gustavo* | *(função)* |
+| *Thiago* | *(função)* |
 
 ---
 
