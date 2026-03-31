@@ -31,10 +31,10 @@
 
 | Tecla | Ação |
 |---|---|
-| `← →` | Mover para a esquerda / direita |
+| `A D` | Mover para a esquerda / direita |
 | `Espaço` | Pular |
-| `Z` | Ataque com mochila (curto alcance) |
-| `X` | Arremessar livro (longo alcance) |
+| `R` | Ataque com mochila (curto alcance) |
+| `F` | Arremessar livro (longo alcance) |
 | `P` | Pausar a partida |
 | `Esc` | Voltar ao menu |
 
@@ -88,7 +88,7 @@
 
 ## 🌍 Assets
 
-> *(Adicione aqui os links e créditos das imagens, sprites, músicas e efeitos sonoros utilizados no jogo.)*
+> *(Serão adicionados os assets)*
 
 | Asset | Fonte / Link |
 |---|---|
