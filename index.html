@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Estudante Universitário — O Jogo</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a1a;
+    --bg2: #0f0f2a;
+    --primary: #f7c948;
+    --accent: #ff4d6d;
+    --blue: #4daaff;
+    --green: #3dffa0;
+    --purple: #b04dff;
+    --text: #e8e0ff;
+    --text-dim: #8880aa;
+    --card: rgba(255,255,255,0.04);
+    --border: rgba(247,201,72,0.2);
+    --pixel: 'Press Start 2P', monospace;
+    --display: 'VT323', monospace;
+    --body-font: 'Rajdhani', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body-font);
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* SCANLINES OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.08) 2px,
+      rgba(0,0,0,0.08) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* STARS BG */
+  .stars {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--dur, 3s) infinite alternate ease-in-out;
+    opacity: var(--op, 0.5);
+  }
+  @keyframes twinkle { from { opacity: 0.1; } to { opacity: var(--op, 0.8); } }
+
+  /* PIXEL GRID LINES */
+  .pixel-grid {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(247,201,72,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(247,201,72,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ───── HERO ───── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px 80px;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(247,201,72,0.08) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.5; transform: translate(-50%,-50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%,-50%) scale(1.15); }
+  }
+
+  .badge {
+    display: inline-block;
+    font-family: var(--pixel);
+    font-size: 9px;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 6px 14px;
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+    animation: fadeSlideDown 0.8s ease both;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-family: var(--pixel);
+    font-size: clamp(20px, 5vw, 40px);
+    color: var(--primary);
+    text-shadow:
+      0 0 20px rgba(247,201,72,0.6),
+      0 0 60px rgba(247,201,72,0.3),
+      4px 4px 0 rgba(180,100,0,0.6);
+    line-height: 1.4;
+    margin-bottom: 10px;
+    animation: fadeSlideDown 0.9s ease 0.1s both;
+  }
+
+  .hero-subtitle {
+    font-family: var(--display);
+    font-size: clamp(22px, 4vw, 40px);
+    color: var(--blue);
+    letter-spacing: 6px;
+    margin-bottom: 30px;
+    animation: fadeSlideDown 1s ease 0.2s both;
+    text-shadow: 0 0 20px rgba(77,170,255,0.5);
+  }
+
+  .hero-desc {
+    font-family: var(--body-font);
+    font-size: 20px;
+    color: var(--text-dim);
+    max-width: 560px;
+    margin: 0 auto 50px;
+    animation: fadeSlideDown 1s ease 0.3s both;
+    font-weight: 300;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeSlideDown 1s ease 0.4s both;
+  }
+
+  .btn-primary {
+    font-family: var(--pixel);
+    font-size: 11px;
+    background: var(--primary);
+    color: #1a0d00;
+    border: none;
+    padding: 16px 32px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    transition: transform 0.1s, box-shadow 0.1s;
+    box-shadow: 4px 4px 0 rgba(180,100,0,0.8);
+    letter-spacing: 1px;
+  }
+  .btn-primary:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 rgba(180,100,0,0.8);
+  }
+  .btn-primary:active { transform: translate(2px,2px); box-shadow: 2px 2px 0; }
+
+  .btn-secondary {
+    font-family: var(--pixel);
+    font-size: 11px;
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    padding: 16px 32px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    letter-spacing: 1px;
+  }
+  .btn-secondary:hover { background: rgba(247,201,72,0.1); }
+
+  /* PIXEL CHARACTER SPRITE */
+  .sprite-container {
+    position: relative;
+    margin: 40px auto 0;
+    animation: fadeSlideDown 1s ease 0.5s both, float 3s ease-in-out infinite 1.5s;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .pixel-sprite {
+    image-rendering: pixelated;
+    width: 96px;
+    height: 96px;
+  }
+
+  /* ───── SECTION SHARED ───── */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 80px 20px;
+  }
+
+  .section-label {
+    font-family: var(--pixel);
+    font-size: 8px;
+    color: var(--accent);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: var(--pixel);
+    font-size: clamp(14px, 3vw, 22px);
+    color: var(--primary);
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 0 rgba(180,100,0,0.5);
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ───── DIVIDER ───── */
+  .pixel-divider {
+    height: 4px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--primary) 0, var(--primary) 8px,
+      transparent 8px, transparent 16px
+    );
+    opacity: 0.4;
+    margin: 0 auto;
+    max-width: 1100px;
+  }
+
+  /* ───── STORY ───── */
+  #story {
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+    text-align: center;
+  }
+
+  .story-text {
+    font-size: 20px;
+    color: var(--text);
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.9;
+  }
+  .story-text strong {
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  /* ───── FEATURES ───── */
+  #features { background: var(--bg); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .feature-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 30px 28px;
+    position: relative;
+    transition: border-color 0.3s, transform 0.2s;
+    cursor: default;
+    overflow: hidden;
+  }
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--card-accent, var(--primary));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .feature-card:hover { border-color: var(--card-accent, var(--primary)); transform: translateY(-4px); }
+  .feature-card:hover::before { opacity: 1; }
+
+  .feature-icon {
+    font-size: 36px;
+    margin-bottom: 14px;
+    display: block;
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+
+  .feature-title {
+    font-family: var(--pixel);
+    font-size: 10px;
+    color: var(--primary);
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+
+  .feature-desc {
+    font-size: 17px;
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+
+  /* ───── ENEMIES ───── */
+  #enemies { background: var(--bg2); }
+
+  .enemies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+  }
+
+  .enemy-card {
+    background: var(--card);
+    border: 1px solid rgba(255, 77, 109, 0.2);
+    padding: 28px 24px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .enemy-card::after {
+    content: 'INIMIGO';
+    position: absolute;
+    top: 10px; right: -20px;
+    font-family: var(--pixel);
+    font-size: 6px;
+    color: var(--accent);
+    background: rgba(255,77,109,0.15);
+    padding: 3px 8px;
+    transform: rotate(45deg) translateX(8px);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .enemy-card:hover { border-color: var(--accent); transform: scale(1.02); }
+  .enemy-card:hover::after { opacity: 1; }
+
+  .enemy-emoji { font-size: 52px; margin-bottom: 12px; display: block; animation: enemy-bob 2s ease-in-out infinite; }
+  @keyframes enemy-bob {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-5px) rotate(-3deg); }
+    75% { transform: translateY(-3px) rotate(3deg); }
+  }
+
+  .enemy-name {
+    font-family: var(--pixel);
+    font-size: 9px;
+    color: var(--accent);
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+  .enemy-desc { font-size: 16px; color: var(--text-dim); font-weight: 300; }
+
+  .boss-card {
+    border-color: rgba(176,77,255,0.4) !important;
+    grid-column: span 2;
+    background: linear-gradient(135deg, rgba(176,77,255,0.05), rgba(0,0,0,0));
+  }
+  .boss-card .enemy-name { color: var(--purple) !important; }
+  .boss-card:hover { border-color: var(--purple) !important; }
+  .boss-tag {
+    display: inline-block;
+    font-family: var(--pixel);
+    font-size: 7px;
+    background: var(--purple);
+    color: white;
+    padding: 3px 10px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+
+  /* ───── HOW TO PLAY ───── */
+  #howto { background: var(--bg); }
+
+  .controls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 50px;
+  }
+
+  .control-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .control-item:hover { border-color: var(--blue); }
+
+  .key {
+    font-family: var(--pixel);
+    font-size: 10px;
+    color: var(--bg);
+    background: var(--primary);
+    padding: 6px 12px;
+    display: inline-block;
+    flex-shrink: 0;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+    min-width: 52px;
+    text-align: center;
+  }
+
+  .control-desc {
+    font-size: 16px;
+    color: var(--text);
+    font-weight: 600;
+    padding-top: 4px;
+  }
+  .control-sub { font-size: 14px; color: var(--text-dim); font-weight: 300; }
+
+  /* ───── SCREENS ───── */
+  #screens { background: var(--bg2); }
+
+  .screens-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .screen-card {
+    background: #111124;
+    border: 2px solid var(--border);
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+  .screen-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+
+  .screen-preview {
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--pixel);
+    font-size: 10px;
+    color: var(--text-dim);
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+  }
+
+  /* TELA INICIAL MOCKUP */
+  .screen-inicio {
+    background: linear-gradient(180deg, #0a0a2a 0%, #1a0a3a 100%);
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+  .screen-inicio .mock-title {
+    font-family: var(--pixel);
+    font-size: 8px;
+    color: var(--primary);
+    text-shadow: 0 0 10px rgba(247,201,72,0.8);
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+  .mock-btn {
+    font-family: var(--pixel);
+    font-size: 7px;
+    color: var(--bg);
+    background: var(--primary);
+    padding: 5px 12px;
+    display: inline-block;
+    animation: blink-btn 1s step-end infinite;
+  }
+  @keyframes blink-btn { 50% { opacity: 0; } }
+  .mock-pixels {
+    display: flex; gap: 4px; justify-content: center; margin-bottom: 8px;
+  }
+  .mock-pixel-char { font-size: 18px; }
+
+  /* FASE 1 MOCKUP */
+  .screen-fase {
+    background: linear-gradient(180deg, #0f1f3f 0%, #1f0f3f 100%);
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .mock-hud {
+    font-family: var(--pixel);
+    font-size: 6px;
+    color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 2;
+  }
+  .mock-hp { color: var(--accent); }
+  .mock-ground {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 20px;
+    background: repeating-linear-gradient(90deg, #3a2010 0, #3a2010 8px, #4a3020 8px, #4a3020 16px);
+  }
+  .mock-platforms {
+    position: absolute;
+    bottom: 25px;
+    display: flex;
+    gap: 30px;
+    left: 20px;
+  }
+  .mock-plat {
+    height: 6px;
+    width: 40px;
+    background: #5a4030;
+    box-shadow: 0 2px 0 #3a2010;
+  }
+  .mock-char-pos {
+    position: absolute;
+    bottom: 26px;
+    left: 30px;
+    font-size: 16px;
+  }
+  .mock-enemy-pos {
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    font-size: 14px;
+    animation: enemy-walk 1s steps(2) infinite;
+  }
+  @keyframes enemy-walk { 50% { transform: scaleX(-1); } }
+
+  /* GAME OVER MOCKUP */
+  .screen-gameover {
+    background: #0a0000;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+  .mock-gameover-text {
+    font-family: var(--pixel);
+    font-size: 10px;
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(255,77,109,0.8);
+    animation: flicker 2s infinite;
+  }
+  @keyframes flicker { 0%,100%{opacity:1} 92%{opacity:1} 93%{opacity:0.3} 95%{opacity:1} 97%{opacity:0.4} 99%{opacity:1} }
+  .mock-skull { font-size: 28px; animation: skull-spin 4s ease-in-out infinite; }
+  @keyframes skull-spin { 0%,100%{transform:rotate(-5deg)} 50%{transform:rotate(5deg)} }
+
+  .screen-label {
+    padding: 12px 20px;
+    background: rgba(0,0,0,0.4);
+    font-family: var(--pixel);
+    font-size: 8px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+  }
+
+  /* ───── CTA ───── */
+  #cta {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  #cta::before {
+    content: '';
+    position: absolute;
+    width: 800px; height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(247,201,72,0.05) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+  }
+
+  .cta-title {
+    font-family: var(--display);
+    font-size: clamp(40px, 8vw, 80px);
+    color: var(--primary);
+    letter-spacing: 4px;
+    text-shadow: 0 0 40px rgba(247,201,72,0.4);
+    margin-bottom: 16px;
+    animation: pulse-text 2s ease-in-out infinite;
+  }
+  @keyframes pulse-text { 0%,100%{text-shadow: 0 0 40px rgba(247,201,72,0.4);} 50%{text-shadow: 0 0 80px rgba(247,201,72,0.7);} }
+
+  .cta-sub { font-size: 20px; color: var(--text-dim); margin-bottom: 40px; }
+
+  /* ───── FOOTER ───── */
+  footer {
+    background: #050510;
+    border-top: 1px solid var(--border);
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-logo {
+    font-family: var(--pixel);
+    font-size: 10px;
+    color: var(--primary);
+    margin-bottom: 10px;
+  }
+
+  .footer-text {
+    font-size: 14px;
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+
+  /* ───── NAV ───── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,26,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--pixel);
+    font-size: 9px;
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--pixel);
+    font-size: 8px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 1px;
+  }
+  .nav-links a:hover { color: var(--primary); }
+
+  /* ───── STATS ───── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    margin-top: 60px;
+    padding-top: 60px;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-num {
+    font-family: var(--display);
+    font-size: 56px;
+    color: var(--primary);
+    display: block;
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(247,201,72,0.4);
+  }
+
+  .stat-label {
+    font-family: var(--pixel);
+    font-size: 7px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    margin-top: 4px;
+  }
+
+  /* ───── ANIMATIONS ───── */
+  @keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .boss-card { grid-column: span 1; }
+    .nav-links { display: none; }
+    nav { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND EFFECTS -->
+<div class="stars" id="stars"></div>
+<div class="pixel-grid"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">🎮 O ESTUDANTE</a>
+  <ul class="nav-links">
+    <li><a href="#story">HISTÓRIA</a></li>
+    <li><a href="#features">MECÂNICAS</a></li>
+    <li><a href="#enemies">INIMIGOS</a></li>
+    <li><a href="#howto">CONTROLES</a></li>
+    <li><a href="#screens">TELAS</a></li>
+    <li><a href="#cta">JOGAR</a></li>
+  </ul>
+</nav>
+
+<!-- ───── HERO ───── -->
+<section id="hero">
+  <div class="hero-glow"></div>
+
+  <span class="badge">🎓 Jogo de Plataforma 2D</span>
+
+  <h1 class="hero-title">O ESTUDANTE<br>UNIVERSITÁRIO</h1>
+  <p class="hero-subtitle">THE GAME</p>
+  <p class="hero-desc">Carregue sua mochila, desvie dos boletos e chegue à universidade antes que o cansaço te vença.</p>
+
+  <div class="hero-btns">
+    <a href="#cta" class="btn-primary">▶ JOGAR AGORA</a>
+    <a href="#story" class="btn-secondary">↓ SAIBA MAIS</a>
+  </div>
+
+  <div class="sprite-container">
+    <!-- Pixel Art SVG Character -->
+    <svg class="pixel-sprite" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="width:96px;height:96px;">
+      <!-- Hair / cap -->
+      <rect x="5" y="1" width="6" height="2" fill="#f7c948"/>
+      <rect x="4" y="2" width="8" height="1" fill="#f7c948"/>
+      <!-- Face -->
+      <rect x="5" y="3" width="6" height="4" fill="#ffd699"/>
+      <rect x="6" y="5" width="1" height="1" fill="#333"/>
+      <rect x="9" y="5" width="1" height="1" fill="#333"/>
+      <rect x="7" y="6" width="2" height="1" fill="#cc6644"/>
+      <!-- Body -->
+      <rect x="5" y="7" width="6" height="4" fill="#4daaff"/>
+      <!-- Legs -->
+      <rect x="5" y="11" width="2" height="3" fill="#334466"/>
+      <rect x="9" y="11" width="2" height="3" fill="#334466"/>
+      <!-- Shoes -->
+      <rect x="4" y="13" width="3" height="2" fill="#222"/>
+      <rect x="9" y="13" width="3" height="2" fill="#222"/>
+      <!-- Backpack -->
+      <rect x="11" y="7" width="3" height="4" fill="#ff7744"/>
+      <rect x="12" y="8" width="1" height="2" fill="#cc5522"/>
+      <!-- Arms -->
+      <rect x="3" y="7" width="2" height="3" fill="#ffd699"/>
+      <rect x="11" y="7" width="1" height="1" fill="#ffd699"/>
+      <!-- Book (held) -->
+      <rect x="2" y="9" width="2" height="3" fill="#f7c948"/>
+      <rect x="2" y="9" width="1" height="3" fill="#cc9900"/>
+    </svg>
+  </div>
+
+  <div class="stats-row reveal">
+    <div class="stat-item">
+      <span class="stat-num">3</span>
+      <span class="stat-label">TIPOS DE INIMIGOS</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">1</span>
+      <span class="stat-label">CHEFÃO FINAL</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">2</span>
+      <span class="stat-label">TIPOS DE ATAQUE</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">∞</span>
+      <span class="stat-label">DÍVIDAS EVITADAS</span>
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider"></div>
+
+<!-- ───── STORY ───── -->
+<section id="story">
+  <div class="container" style="text-align:center;">
+    <span class="section-label">// HISTÓRIA</span>
+    <h2 class="section-title">A JORNADA COMEÇA AQUI</h2>
+    <p class="story-text reveal">
+      Você é um <strong>estudante universitário</strong> com uma missão simples — e impossível:
+      chegar à faculdade. Mas entre você e os portões da universidade estão <strong>zumbis sonolentos</strong>,
+      <strong>xícaras de café enfurecidas</strong> e o temido <strong>Boleto da Faculdade</strong>.
+      <br><br>
+      Sua mochila é sua arma. Seus livros são seus projéteis. Sua vontade de passar no semestre
+      é sua <strong>única vida</strong> — cuide bem dela.
+    </p>
+  </div>
+</section>
+
+<div class="pixel-divider"></div>
+
+<!-- ───── FEATURES ───── -->
+<section id="features">
+  <div class="container">
+    <span class="section-label">// MECÂNICAS</span>
+    <h2 class="section-title">COMO O JOGO FUNCIONA</h2>
+
+    <div class="features-grid">
+      <div class="feature-card reveal" style="--card-accent: #f7c948;">
+        <span class="feature-icon" style="color:#f7c948;">🎒</span>
+        <h3 class="feature-title">ATAQUE COM MOCHILA</h3>
+        <p class="feature-desc">Desfira golpes de curto alcance usando sua mochila como uma espada. Eficaz contra inimigos próximos.</p>
+      </div>
+      <div class="feature-card reveal" style="--card-accent: #4daaff;">
+        <span class="feature-icon" style="color:#4daaff;">📚</span>
+        <h3 class="feature-title">ARREMESSO DE LIVROS</h3>
+        <p class="feature-desc">Ataque à distância atirando livros nos inimigos. Gerencie bem sua munição — os livros são limitados.</p>
+      </div>
+      <div class="feature-card reveal" style="--card-accent: #3dffa0;">
+        <span class="feature-icon" style="color:#3dffa0;">❤️</span>
+        <h3 class="feature-title">SISTEMA DE VIDAS</h3>
+        <p class="feature-desc">Colete itens espalhados pela fase para recuperar vida e reabastecer sua munição de livros.</p>
+      </div>
+      <div class="feature-card reveal" style="--card-accent: #ff4d6d;">
+        <span class="feature-icon" style="color:#ff4d6d;">🏃</span>
+        <h3 class="feature-title">MOVIMENTAÇÃO FLUIDA</h3>
+        <p class="feature-desc">Ande para a direita, esquerda e pule por plataformas e obstáculos ambientais.</p>
+      </div>
+      <div class="feature-card reveal" style="--card-accent: #b04dff;">
+        <span class="feature-icon" style="color:#b04dff;">🚪</span>
+        <h3 class="feature-title">PORTAIS E ATALHOS</h3>
+        <p class="feature-desc">Descubra portais secretos e atalhos espalhados pela fase para avançar mais rapidamente.</p>
+      </div>
+      <div class="feature-card reveal" style="--card-accent: #f7c948;">
+        <span class="feature-icon" style="color:#f7c948;">⏸️</span>
+        <h3 class="feature-title">PAUSA A QUALQUER MOMENTO</h3>
+        <p class="feature-desc">Pause a partida sempre que precisar. O café pode esperar, mas os inimigos não.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider"></div>
+
+<!-- ───── ENEMIES ───── -->
+<section id="enemies">
+  <div class="container">
+    <span class="section-label">// BESTIÁRIO</span>
+    <h2 class="section-title">INIMIGOS QUE VÃO TE ATRAPALHAR</h2>
+
+    <div class="enemies-grid">
+      <div class="enemy-card reveal">
+        <span class="enemy-emoji">🧟</span>
+        <h3 class="enemy-name">ZUMBI DA<br>PRIVAÇÃO DE SONO</h3>
+        <p class="enemy-desc">Lento, mas implacável. Representa o cansaço acumulado de noites sem dormir estudando.</p>
+      </div>
+      <div class="enemy-card reveal">
+        <span class="enemy-emoji">☕</span>
+        <h3 class="enemy-name">XÍCARA DE CAFÉ</h3>
+        <p class="enemy-desc">Projéteis saltitantes e frenéticos. O que deveria te ajudar agora te atrapalha.</p>
+      </div>
+      <div class="enemy-card reveal">
+        <span class="enemy-emoji">📜</span>
+        <h3 class="enemy-name">PROVA VOADORA</h3>
+        <p class="enemy-desc">Aparecem do nada, voando em sua direção. Nunca se sabe quando vão aparecer.</p>
+      </div>
+      <div class="enemy-card reveal">
+        <span class="enemy-emoji">⏰</span>
+        <h3 class="enemy-name">DESPERTADOR<br>GIGANTE</h3>
+        <p class="enemy-desc">Obstáculo gigantesco que bloqueia o caminho e atordoa o estudante com seu barulho.</p>
+      </div>
+      <div class="enemy-card boss-card reveal" style="--card-accent:#b04dff;">
+        <span class="boss-tag">⚔ CHEFÃO FINAL</span>
+        <span class="enemy-emoji">🧾</span>
+        <h3 class="enemy-name" style="color:var(--purple)">BOLETO DA FACULDADE</h3>
+        <p class="enemy-desc">O grande vilão. Um boleto monstruoso com braços e pernas, determinado a destruir seu futuro financeiro. Derrote-o para cruzar os portões da universidade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider"></div>
+
+<!-- ───── HOW TO PLAY ───── -->
+<section id="howto">
+  <div class="container">
+    <span class="section-label">// CONTROLES</span>
+    <h2 class="section-title">COMO JOGAR</h2>
+
+    <div class="controls-grid">
+      <div class="control-item reveal">
+        <span class="key">← →</span>
+        <div>
+          <div class="control-desc">Mover</div>
+          <div class="control-sub">Andar para a esquerda ou direita</div>
+        </div>
+      </div>
+      <div class="control-item reveal">
+        <span class="key">ESPAÇO</span>
+        <div>
+          <div class="control-desc">Pular</div>
+          <div class="control-sub">Saltar por plataformas</div>
+        </div>
+      </div>
+      <div class="control-item reveal">
+        <span class="key">Z</span>
+        <div>
+          <div class="control-desc">Ataque — Mochila</div>
+          <div class="control-sub">Golpe de curto alcance</div>
+        </div>
+      </div>
+      <div class="control-item reveal">
+        <span class="key">X</span>
+        <div>
+          <div class="control-desc">Arremessar Livro</div>
+          <div class="control-sub">Ataque de longo alcance</div>
+        </div>
+      </div>
+      <div class="control-item reveal">
+        <span class="key">P</span>
+        <div>
+          <div class="control-desc">Pausar</div>
+          <div class="control-sub">Pausa a partida</div>
+        </div>
+      </div>
+      <div class="control-item reveal">
+        <span class="key">ESC</span>
+        <div>
+          <div class="control-desc">Menu</div>
+          <div class="control-sub">Voltar à tela inicial</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tips -->
+    <div style="background:rgba(247,201,72,0.05); border:1px solid rgba(247,201,72,0.2); padding:28px 30px; margin-top:20px;" class="reveal">
+      <h3 style="font-family:var(--pixel);font-size:10px;color:var(--primary);margin-bottom:16px;">💡 DICAS DE SOBREVIVÊNCIA</h3>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+        <li style="font-size:17px;color:var(--text-dim);">→ Conserve seus livros para inimigos distantes ou grupos.</li>
+        <li style="font-size:17px;color:var(--text-dim);">→ Colete todos os itens que encontrar — cada vida conta.</li>
+        <li style="font-size:17px;color:var(--text-dim);">→ O Boleto tem padrão de ataque — observe antes de avançar.</li>
+        <li style="font-size:17px;color:var(--text-dim);">→ Plataformas móveis podem ser aliadas ou armadilhas.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider"></div>
+
+<!-- ───── SCREENS ───── -->
+<section id="screens">
+  <div class="container">
+    <span class="section-label">// TELAS DO JOGO</span>
+    <h2 class="section-title">GALERIA DE TELAS</h2>
+
+    <div class="screens-row">
+      <!-- TELA INICIAL -->
+      <div class="screen-card reveal">
+        <div class="screen-preview screen-inicio">
+          <div class="mock-pixels">
+            <span class="mock-pixel-char">⭐</span>
+            <span class="mock-pixel-char">🎒</span>
+            <span class="mock-pixel-char">⭐</span>
+          </div>
+          <div class="mock-title">O ESTUDANTE<br>UNIVERSITÁRIO</div>
+          <span class="mock-btn">▶ INICIAR</span>
+        </div>
+        <div class="screen-label">TELA INICIAL</div>
+      </div>
+
+      <!-- FASE 1 -->
+      <div class="screen-card reveal">
+        <div class="screen-preview screen-fase">
+          <div class="mock-hud">
+            <span>❤️❤️❤️ VIDAS: 3</span>
+            <span>📚 LIVROS: 5</span>
+            <span style="color:#3dffa0;">PONTOS: 1200</span>
+          </div>
+          <div class="mock-platforms">
+            <div class="mock-plat"></div>
+            <div class="mock-plat" style="margin-top:-10px;"></div>
+            <div class="mock-plat"></div>
+          </div>
+          <span class="mock-char-pos">🎒</span>
+          <span class="mock-enemy-pos">🧟</span>
+          <div class="mock-ground"></div>
+        </div>
+        <div class="screen-label">FASE 1 — GAMEPLAY</div>
+      </div>
+
+      <!-- GAME OVER -->
+      <div class="screen-card reveal">
+        <div class="screen-preview screen-gameover">
+          <span class="mock-skull">💀</span>
+          <div class="mock-gameover-text">GAME OVER</div>
+          <div style="font-family:var(--pixel);font-size:6px;color:var(--text-dim);margin-top:6px;">VOCÊ NÃO CHEGOU<br>À UNIVERSIDADE</div>
+          <span class="mock-btn" style="margin-top:10px;background:var(--accent);font-size:6px;">TENTAR NOVAMENTE</span>
+        </div>
+        <div class="screen-label">GAME OVER</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider"></div>
+
+<!-- ───── AUDIO ───── -->
+<section id="audio" style="background:var(--bg); text-align:center;">
+  <div class="container">
+    <span class="section-label">// ÁUDIO</span>
+    <h2 class="section-title">TRILHA SONORA & EFEITOS</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:10px;">
+      <div class="feature-card reveal" style="--card-accent:#3dffa0;">
+        <span class="feature-icon" style="color:#3dffa0;">🎵</span>
+        <h3 class="feature-title">BGM — FASE</h3>
+        <p class="feature-desc">Trilha animada e frenética para manter o ritmo durante o percurso.</p>
+      </div>
+      <div class="feature-card reveal" style="--card-accent:#f7c948;">
+        <span class="feature-icon" style="color:#f7c948;">🎶</span>
+        <h3 class="feature-title">BGM — TELA INICIAL</h3>
+        <p class="feature-desc">Música de abertura épica que prepara o jogador para o desafio.</p>
+      </div>
+      <div class="feature-card reveal" style="--card-accent:#ff4d6d;">
+        <span class="feature-icon" style="color:#ff4d6d;">🎸</span>
+        <h3 class="feature-title">BGM — GAME OVER</h3>
+        <p class="feature-desc">Melodia dramática e melancólica para a tela de derrota.</p>
+      </div>
+      <div class="feature-card reveal" style="--card-accent:#4daaff;">
+        <span class="feature-icon" style="color:#4daaff;">🔊</span>
+        <h3 class="feature-title">SFX — EFEITOS</h3>
+        <p class="feature-desc">Impacto da mochila, arremesso de livros, dano recebido e sons dos inimigos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── CTA ───── -->
+<section id="cta">
+  <div class="container">
+    <p class="cta-sub reveal">O semestre não vai se passar sozinho.</p>
+    <h2 class="cta-title reveal">PRONTO PARA JOGAR?</h2>
+    <div class="hero-btns reveal">
+      <a href="https://itch.io/" target="_blank" class="btn-primary">▶ JOGAR NO ITCH.IO</a>
+      <a href="#features" class="btn-secondary">↑ VOLTAR AO TOPO</a>
+    </div>
+    <p style="margin-top:30px;font-family:var(--pixel);font-size:8px;color:var(--text-dim);" class="reveal">
+      DISPONÍVEL EM: WINDOWS · MAC · LINUX
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">🎒 O ESTUDANTE UNIVERSITÁRIO</div>
+  <p class="footer-text">Desenvolvido com ☕ e muito sofrimento acadêmico · Todos os boletos reservados</p>
+</footer>
+
+<script>
+// STARS
+const starsEl = document.getElementById('stars');
+for(let i=0;i<80;i++){
+  const s=document.createElement('div');
+  s.className='star';
+  const size = Math.random()*2+1;
+  s.style.cssText=`
+    left:${Math.random()*100}%;
+    top:${Math.random()*100}%;
+    width:${size}px;
+    height:${size}px;
+    --dur:${2+Math.random()*4}s;
+    --op:${0.3+Math.random()*0.7};
+    animation-delay:${Math.random()*4}s;
+  `;
+  starsEl.appendChild(s);
+}
+
+// REVEAL ON SCROLL
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'), i*80);
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+reveals.forEach(r=>observer.observe(r));
+</script>
+</body>
+</html>
