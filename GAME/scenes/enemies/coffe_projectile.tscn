@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://bc4uu2mab81rn"]
+
+[ext_resource type="Texture2D" uid="uid://dbnm7jrkgc2bh" path="res://assets/sprites/enemies/coffe_cup/coffe_projectile.png" id="1_ogsmt"]
+[ext_resource type="Script" uid="uid://bactvm7ompw5g" path="res://scripts/enemies/coffe_projectile.gd" id="1_oqtsy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqtsy"]
+atlas = ExtResource("1_ogsmt")
+region = Rect2(0, 0, 125, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngmbw"]
+atlas = ExtResource("1_ogsmt")
+region = Rect2(125, 0, 125, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yllnn"]
+atlas = ExtResource("1_ogsmt")
+region = Rect2(250, 0, 125, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqxcr"]
+atlas = ExtResource("1_ogsmt")
+region = Rect2(375, 0, 125, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0vum"]
+atlas = ExtResource("1_ogsmt")
+region = Rect2(0, 0, 125, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1n56"]
+atlas = ExtResource("1_ogsmt")
+region = Rect2(125, 0, 125, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ei4vb"]
+atlas = ExtResource("1_ogsmt")
+region = Rect2(250, 0, 125, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4foy"]
+atlas = ExtResource("1_ogsmt")
+region = Rect2(375, 0, 125, 124)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m4vwd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqtsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngmbw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yllnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqxcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0vum")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1n56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ei4vb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4foy")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ogsmt"]
+
+[node name="CoffeProjectile" type="Area2D" unique_id=364652267]
+script = ExtResource("1_oqtsy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=840889340]
+sprite_frames = SubResource("SpriteFrames_m4vwd")
+animation = &"flying"
+frame_progress = 0.671895
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1628102474]
+position = Vector2(20, 0)
+shape = SubResource("CircleShape2D_ogsmt")

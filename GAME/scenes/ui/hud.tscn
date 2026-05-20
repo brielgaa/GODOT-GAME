@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://he54vfxuor8u"]
+
+[ext_resource type="Texture2D" uid="uid://cua16hnbt6gto" path="res://assets/sprites/ui/heart.png" id="1_0mwgc"]
+[ext_resource type="Script" uid="uid://cjtt22pmfm3pc" path="res://scripts/hud.gd" id="1_hqnrr"]
+
+[node name="Hud" type="CanvasLayer" unique_id=1265308342]
+script = ExtResource("1_hqnrr")
+
+[node name="Heart1" type="TextureRect" parent="." unique_id=2134625277]
+custom_minimum_size = Vector2(32, 32)
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 78.71002
+offset_bottom = 52.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("1_0mwgc")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Heart2" type="TextureRect" parent="." unique_id=1061009988]
+custom_minimum_size = Vector2(32, 32)
+offset_left = 60.0
+offset_top = 20.0
+offset_right = 118.71002
+offset_bottom = 52.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("1_0mwgc")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Heart3" type="TextureRect" parent="." unique_id=480692450]
+custom_minimum_size = Vector2(32, 32)
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 158.71002
+offset_bottom = 52.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("1_0mwgc")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="AmmoLabel" type="Label" parent="." unique_id=1484680777]
+offset_right = 40.0
+offset_bottom = 23.0

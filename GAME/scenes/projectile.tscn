@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bcadm5mkfiau4"]
+
+[ext_resource type="Texture2D" uid="uid://cgbmlhk70nakf" path="res://assets/sprites/player/book.png" id="1_c8fcr"]
+[ext_resource type="Script" uid="uid://vdhm8fenv5nr" path="res://scripts/projectile.gd" id="1_q3m7n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3m7n"]
+atlas = ExtResource("1_c8fcr")
+region = Rect2(10, 0, 166, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_softn"]
+atlas = ExtResource("1_c8fcr")
+region = Rect2(176, 0, 166, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6q2a6"]
+atlas = ExtResource("1_c8fcr")
+region = Rect2(342, 0, 166, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byeak"]
+atlas = ExtResource("1_c8fcr")
+region = Rect2(508, 0, 166, 369)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jxwu6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3m7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_softn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6q2a6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byeak")
+}],
+"loop": true,
+"name": &"book",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w7nm8"]
+radius = 20.0
+
+[node name="Projectile" type="Area2D" unique_id=1146564123]
+position = Vector2(559, 328)
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_q3m7n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=458639054]
+sprite_frames = SubResource("SpriteFrames_jxwu6")
+animation = &"book"
+frame_progress = 0.15080105
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=698010993]
+shape = SubResource("CircleShape2D_w7nm8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -33,9 +33,9 @@
 |---|---|
 | `A D` | Mover para a esquerda / direita |
 | `Espaço` | Pular |
-| `R` | Ataque com mochila (curto alcance) |
-| `F` | Arremessar livro (longo alcance) |
-| `P` | Pausar a partida |
+| `Z` | Ataque com mochila (curto alcance) |
+| `X` | Arremessar livro (longo alcance) |
+| `Esc` | Pausar a partida |
 | `Esc` | Voltar ao menu |
 
 ---
