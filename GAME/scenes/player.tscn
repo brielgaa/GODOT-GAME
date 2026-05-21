@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bcc5bqvw1nt13" path="res://assets/sprites/player/jumping.png" id="3_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://b6wedv3yakr21" path="res://assets/sprites/player/walking.png" id="4_fjrip"]
 [ext_resource type="Texture2D" uid="uid://c2s2qsnyc4yhs" path="res://assets/sprites/player/die.png" id="4_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://buwayqm8wkgal" path="res://assets/sprites/player/climbing.png" id="4_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://cu3x3u00h0gjw" path="res://assets/sprites/player/throwing.png" id="6_fjrip"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i4ail"]
@@ -25,6 +26,22 @@ region = Rect2(352, 0, 176, 353)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ke2ow"]
 atlas = ExtResource("3_fjrip")
 region = Rect2(176, 0, 176, 353)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj30b"]
+atlas = ExtResource("4_y4r1p")
+region = Rect2(0, 0, 176, 353)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc3p3"]
+atlas = ExtResource("4_y4r1p")
+region = Rect2(176, 0, 176, 353)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hax0n"]
+atlas = ExtResource("4_y4r1p")
+region = Rect2(352, 0, 176, 353)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4otl"]
+atlas = ExtResource("4_y4r1p")
+region = Rect2(528, 0, 176, 353)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wnwbv"]
 atlas = ExtResource("4_ur7pv")
@@ -143,6 +160,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_bj30b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc3p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hax0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4otl")
+}],
+"loop": true,
+"name": &"climbing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_wnwbv")
 }, {
 "duration": 1.0,
@@ -250,15 +284,23 @@ height = 126.0
 
 [node name="Player" type="Node2D" unique_id=1596436462]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1249409510 groups=["player"]]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1249409510 groups=["player"]]
 position = Vector2(3, 0)
 script = ExtResource("1_qlg0r")
 projectile_scene = ExtResource("2_tuyoq")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1112732503]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1112732503]
 sprite_frames = SubResource("SpriteFrames_i4ail")
-animation = &"death"
+animation = &"climbing"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=560689426]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=560689426]
 position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_a38lo")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1220051515]
+limit_left = -180
+limit_top = -1000
+limit_right = 2950
+limit_bottom = 1800
+limit_smoothed = true
+position_smoothing_enabled = true

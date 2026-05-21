@@ -12,6 +12,7 @@ var heart_full_texture: Texture2D = preload("res://assets/sprites/ui/heart.png")
 var heart_empty_texture: Texture2D = preload("res://assets/sprites/ui/empty_heart.png")
 
 func _ready():
+	add_to_group("hud")
 	update_hearts(3)
 	update_ammo(10, 10)
 

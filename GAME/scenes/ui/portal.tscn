@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dkcdfnx7nes65"]
+
+[ext_resource type="Script" uid="uid://b0ybqpoj6eh1j" path="res://scenes/ui/portal.gd" id="1_npuvw"]
+[ext_resource type="Texture2D" uid="uid://cp30dlu76sv6t" path="res://assets/ui/portal.png" id="1_tehrx"]
+[ext_resource type="PackedScene" uid="uid://37niwy6gqpmf" path="res://scenes/enemies/cena_boss.tscn" id="2_3leyl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npuvw"]
+atlas = ExtResource("1_tehrx")
+region = Rect2(0, 0, 384, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3leyl"]
+atlas = ExtResource("1_tehrx")
+region = Rect2(384, 0, 384, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_454j5"]
+atlas = ExtResource("1_tehrx")
+region = Rect2(768, 0, 384, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfwkx"]
+atlas = ExtResource("1_tehrx")
+region = Rect2(1152, 0, 384, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_354td"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npuvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3leyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_454j5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfwkx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pekn6"]
+
+[node name="Portal" type="Area2D" unique_id=306127881]
+script = ExtResource("1_npuvw")
+proxima_fase = ExtResource("2_3leyl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1550812731]
+sprite_frames = SubResource("SpriteFrames_354td")
+frame_progress = 0.46517208
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=122655960]
+position = Vector2(3, -41)
+scale = Vector2(14.800002, 11.479999)
+shape = SubResource("RectangleShape2D_pekn6")

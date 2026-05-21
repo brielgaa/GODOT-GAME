@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var hud = get_node("/root/Level1/Hud")
+var hud = null
 @onready var animated_sprite = $AnimatedSprite2D
 
 const SPEED = 200.0
@@ -22,16 +22,24 @@ var is_invincible = false
 
 var jump_count = 0
 var max_jumps = 2
+var esta_na_escada = false
 
 @export var projectile_scene: PackedScene
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _safe_update_hearts(value: int):
+	# Se ainda não sabe quem é o hud, procura-o pelo grupo
+	if not hud:
+		hud = get_tree().get_first_node_in_group("hud")
+		
 	if hud:
 		hud.update_hearts(value)
 
 func _safe_update_ammo(current: int, maximum: int):
+	if not hud:
+		hud = get_tree().get_first_node_in_group("hud")
+		
 	if hud:
 		hud.update_ammo(current, maximum)
 
@@ -46,14 +54,12 @@ func _ready():
 
 func _physics_process(delta):
 	
-	
 	if is_dead:
-		# Deixa a gravidade continuar puxando o corpo para o chão
-		if not is_on_floor():
+		if not is_on_floor() and not esta_na_escada:
 			velocity.y += gravity * delta
-		velocity.x = 0 # Garante que ele não vai deslizar morto
+		velocity.x = 0 
 		move_and_slide()
-		return # Para o resto dos controles (pulo, andar, ataque)
+		return
 
 	if Input.is_action_just_pressed("pause"):
 		var pause_menu = get_node_or_null("/root/Game/PauseMenu")
@@ -62,15 +68,25 @@ func _physics_process(delta):
 			pause_menu.show()
 		return
 
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	# --- LÓGICA DE ESCADA VS GRAVIDADE ---
+	if esta_na_escada:
+		# 1. Desliga a gravidade e permite subir/descer com W e S (ou setas)
+		var direcao_vertical = Input.get_axis("ui_up", "ui_down")
+		velocity.y = direcao_vertical * SPEED
+		jump_count = 0 # Renova o pulo para poderes saltar da escada
 	else:
-		jump_count = 0
+		# 2. Comportamento normal com gravidade quando não está na escada
+		if not is_on_floor():
+			velocity.y += gravity * delta
+		else:
+			jump_count = 0
 
+	# --- PULO NORMAL ---
 	if Input.is_action_just_pressed("ui_accept") and jump_count < max_jumps:
 		velocity.y = JUMP_VELOCITY
 		jump_count += 1
 
+	# --- ANDAR PARA OS LADOS ---
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction != 0:
 		velocity.x = direction * SPEED
@@ -91,6 +107,26 @@ func _physics_process(delta):
 func update_animation():
 	if is_hurt or is_attacking:
 		return
+
+	# --- 1. LÓGICA DA ESCADA ---
+	if esta_na_escada:
+		if animated_sprite.animation != "climbing":
+			animated_sprite.play("climbing") # Mude o nome aqui se necessário
+			
+		# Se não estiver se movendo nem para cima/baixo nem pros lados, congela o frame
+		if velocity.y == 0 and velocity.x == 0:
+			animated_sprite.pause()
+		else:
+			animated_sprite.play() # Volta a tocar se estiver se movendo
+		
+		return # Para a função aqui para não rodar as animações de chão
+
+	# --- 2. RETORNO AO CHÃO (Despausar) ---
+	# Garante que a animação despause caso ele tenha pulado/saído da escada parado
+	if not animated_sprite.is_playing():
+		animated_sprite.play()
+
+	# --- 3. ANIMAÇÕES NORMAIS ---
 	if not is_on_floor():
 		if animated_sprite.animation != "jumping":
 			animated_sprite.play("jumping")
@@ -181,9 +217,17 @@ func shoot():
 	attack_cooldown = false
 
 # Chamado por itens de vida no chão
-func collect_health():
-	health = min(health + 1, max_health)
+func collect_health() -> bool:
+	# 1. Se a vida já estiver cheia, recusa o coração imediatamente
+	if health >= max_health:
+		return false
+		
+	# 2. Se precisa de cura, adiciona 1 e atualiza o HUD
+	health += 1
 	_safe_update_hearts(health)
+	
+	# 3. Manda o "Sinal Verde" para o coração se apagar do mapa!
+	return true
 
 # Chamado por itens de munição no chão
 func collect_ammo(amount: int):

@@ -13,7 +13,7 @@ func _ready():
 func _physics_process(delta):
 	animated_sprite.flip_h = direction == Vector2.RIGHT
 	position += direction * speed * delta
-	if position.x > 2000 or position.x < -2000:
+	if position.x > 3000 or position.x < -3000:
 		queue_free()
 
 func _on_body_entered(body):

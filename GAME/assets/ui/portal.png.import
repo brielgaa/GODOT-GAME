@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mmdnfqlfywma"
-path="res://.godot/imported/tileset escolar.png-a7842e09beea4102af01de11f726c0d5.ctex"
+uid="uid://cp30dlu76sv6t"
+path="res://.godot/imported/portal.png-4766f000aaf46ea40a88d54b71886c71.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/tileset escolar.png"
-dest_files=["res://.godot/imported/tileset escolar.png-a7842e09beea4102af01de11f726c0d5.ctex"]
+source_file="res://assets/ui/portal.png"
+dest_files=["res://.godot/imported/portal.png-4766f000aaf46ea40a88d54b71886c71.ctex"]
 
 [params]
 

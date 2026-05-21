@@ -109,7 +109,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ke4cb"]
 radius = 40.0
-height = 80.0
+height = 110.0
 
 [node name="CoffeCup" type="CharacterBody2D" unique_id=1193015494]
 position = Vector2(576, 280)
@@ -117,9 +117,10 @@ script = ExtResource("1_ke4cb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1824512457]
 position = Vector2(31, -20)
+scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_b4mdo")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1801393891]
-position = Vector2(29, 30)
+position = Vector2(33, 41)
 shape = SubResource("CapsuleShape2D_ke4cb")
