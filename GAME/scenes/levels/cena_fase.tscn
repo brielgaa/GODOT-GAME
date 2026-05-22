@@ -3,13 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://b4gna2p2asish" path="res://assets/ui/imagem_fundo.png" id="1_j1lpk"]
 [ext_resource type="PackedScene" uid="uid://0ykn8q13slo3" path="res://scenes/player.tscn" id="2_5fdea"]
 [ext_resource type="PackedScene" uid="uid://8b6r3choab1p" path="res://scenes/enemies/zombie.tscn" id="3_v5pcj"]
-[ext_resource type="PackedScene" uid="uid://p57614heb600" path="res://cena_vida.tscn" id="4_2r50s"]
+[ext_resource type="PackedScene" uid="uid://p57614heb600" path="res://scenes/levels/vida.tscn" id="4_2r50s"]
 [ext_resource type="PackedScene" uid="uid://bc4uu2mab81rn" path="res://scenes/enemies/coffe_projectile.tscn" id="4_k3apr"]
 [ext_resource type="PackedScene" uid="uid://he54vfxuor8u" path="res://scenes/ui/hud.tscn" id="5_j1lpk"]
 [ext_resource type="PackedScene" uid="uid://chk150ka5d4tg" path="res://scenes/enemies/coffe_cup.tscn" id="5_k3apr"]
-[ext_resource type="PackedScene" path="res://area_dano.tscn" id="6_08fst"]
+[ext_resource type="PackedScene" uid="uid://cin26qub85o7k" path="res://scenes/levels/area_dano.tscn" id="6_08fst"]
 [ext_resource type="Texture2D" uid="uid://cn42rfheufmkx" path="res://assets/ui/arame.png" id="7_6bdly"]
-[ext_resource type="PackedScene" uid="uid://de6jv3x15e50h" path="res://escada.tscn" id="8_4lqq5"]
+[ext_resource type="PackedScene" uid="uid://de6jv3x15e50h" path="res://scenes/levels/escada.tscn" id="8_4lqq5"]
 [ext_resource type="PackedScene" uid="uid://dkcdfnx7nes65" path="res://scenes/ui/portal.tscn" id="11_k3apr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2r50s"]
@@ -19,7 +19,7 @@ size = Vector2(403, 72)
 size = Vector2(599, 54)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_08fst"]
-size = Vector2(1478.5, 54)
+size = Vector2(1468.125, 32.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6bdly"]
 size = Vector2(873, 54)
@@ -28,19 +28,19 @@ size = Vector2(873, 54)
 size = Vector2(157.55556, 54)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lmqd"]
-size = Vector2(1246.25, 54)
+size = Vector2(1246.25, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b52ro"]
 size = Vector2(793, 54)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfbne"]
-size = Vector2(269, 54)
+size = Vector2(253.5, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3apr"]
-size = Vector2(525.5, 54)
+size = Vector2(467.75, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a81b3"]
-size = Vector2(549, 54)
+size = Vector2(549, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijxin"]
 size = Vector2(1998, 54)
@@ -69,11 +69,11 @@ rotation = 1.5707964
 shape = SubResource("RectangleShape2D_2r50s")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=201995573]
-position = Vector2(705.5, 147)
+position = Vector2(740, 193)
 shape = SubResource("RectangleShape2D_j1lpk")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1840005015]
-position = Vector2(439, -254)
+position = Vector2(455, -218)
 shape = SubResource("RectangleShape2D_08fst")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=539254759]
@@ -88,7 +88,7 @@ shape = SubResource("RectangleShape2D_4lqq5")
 one_way_collision = true
 
 [node name="CollisionShape2D14" type="CollisionShape2D" parent="StaticBody2D" unique_id=1118151315]
-position = Vector2(924.125, -607)
+position = Vector2(924.125, -591)
 shape = SubResource("RectangleShape2D_0lmqd")
 one_way_collision = true
 
@@ -97,19 +97,19 @@ position = Vector2(1852, 157)
 shape = SubResource("RectangleShape2D_b52ro")
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D" unique_id=658450952]
-position = Vector2(2182, -242)
+position = Vector2(2162, -211.5)
 shape = SubResource("RectangleShape2D_qfbne")
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D" unique_id=1171921092]
-position = Vector2(1550.25, -246)
+position = Vector2(1533.125, -216.5)
 shape = SubResource("RectangleShape2D_k3apr")
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="StaticBody2D" unique_id=481008081]
-position = Vector2(2051, -614)
+position = Vector2(2044, -579)
 shape = SubResource("RectangleShape2D_a81b3")
 
 [node name="CollisionShape2D11" type="CollisionShape2D" parent="StaticBody2D" unique_id=1249806647]
-position = Vector2(339, 147)
+position = Vector2(367, 192)
 shape = SubResource("RectangleShape2D_ijxin")
 
 [node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody2D" unique_id=1483648592]
@@ -117,7 +117,7 @@ position = Vector2(-467, -262)
 shape = SubResource("RectangleShape2D_ynw47")
 
 [node name="CollisionShape2D13" type="CollisionShape2D" parent="StaticBody2D" unique_id=2029905268]
-position = Vector2(688, 689)
+position = Vector2(688, 706)
 shape = SubResource("RectangleShape2D_tx4j6")
 
 [node name="CollisionShape2D15" type="CollisionShape2D" parent="StaticBody2D" unique_id=1315438932]
@@ -141,7 +141,9 @@ polygon = PackedVector2Array(1600, 127.7384, 2049, -276.80685, 2252, -257, 2244,
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1194872727]
 position = Vector2(9, -16)
-polygon = PackedVector2Array(1501, -386, 1774, -631, 1799, -548)
+polygon = PackedVector2Array(1325, -215, 1723, -592, 1783, -532, 1623, -398, 1516, -313, 1413, -218)
+one_way_collision = true
+one_way_collision_margin = 50.0
 
 [node name="Vida" parent="." unique_id=1911877330 instance=ExtResource("4_2r50s")]
 position = Vector2(1541, -62)
@@ -152,18 +154,18 @@ position = Vector2(508, 319)
 scale = Vector2(1.64, 1.6)
 
 [node name="Inimigo" parent="." unique_id=472440832 instance=ExtResource("3_v5pcj")]
-position = Vector2(476, 663)
+position = Vector2(507, 670)
 
 [node name="Inimigo2" parent="." unique_id=1963539955 instance=ExtResource("3_v5pcj")]
 position = Vector2(2207, 1190)
 
 [node name="Inimigo3" parent="." unique_id=1193015494 instance=ExtResource("5_k3apr")]
-position = Vector2(1073, 259)
+position = Vector2(1143, 341)
 scale = Vector2(1.5499237, 1.3086115)
 projectile_scene = ExtResource("4_k3apr")
 
 [node name="Inimigo5" parent="." unique_id=499157411 instance=ExtResource("5_k3apr")]
-position = Vector2(2592, -146)
+position = Vector2(2536, -23)
 scale = Vector2(1.5499237, 1.3086115)
 projectile_scene = ExtResource("4_k3apr")
 
@@ -204,7 +206,7 @@ scale = Vector2(0.243179, 0.29372784)
 texture = ExtResource("7_6bdly")
 
 [node name="Portal" parent="." unique_id=306127881 instance=ExtResource("11_k3apr")]
-position = Vector2(160, -37)
+position = Vector2(198, -40)
 
 [node name="Personagem" parent="." unique_id=538782947 instance=ExtResource("2_5fdea")]
 position = Vector2(43, 1197)

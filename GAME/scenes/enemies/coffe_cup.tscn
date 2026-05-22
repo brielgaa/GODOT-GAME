@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://co7eeqa6qejuq" path="res://scripts/enemies/coffe_cup.gd" id="1_ke4cb"]
 [ext_resource type="Texture2D" uid="uid://brel48udaew4w" path="res://assets/sprites/enemies/coffe_cup/death.png" id="2_ke4cb"]
 [ext_resource type="Texture2D" uid="uid://cqco7ucwm0nak" path="res://assets/sprites/enemies/coffe_cup/idle.png" id="3_lp1hw"]
+[ext_resource type="AudioStream" uid="uid://b8tbif0my47ty" path="res://assets/audio/coffe_cup/cup_broken.mp3" id="5_lp1hw"]
+[ext_resource type="AudioStream" uid="uid://bthq3x7drl1ry" path="res://assets/audio/coffe_cup/throw.ogg" id="6_fuxv8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fuxv8"]
 atlas = ExtResource("1_k18j8")
@@ -109,18 +111,25 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ke4cb"]
 radius = 40.0
-height = 110.0
+height = 88.0
 
 [node name="CoffeCup" type="CharacterBody2D" unique_id=1193015494]
 position = Vector2(576, 280)
 script = ExtResource("1_ke4cb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1824512457]
-position = Vector2(31, -20)
-scale = Vector2(0.7, 0.7)
+position = Vector2(28, -4)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_b4mdo")
-animation = &"idle"
+animation = &"attack"
+frame_progress = 0.3520842
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1801393891]
-position = Vector2(33, 41)
+position = Vector2(34, 24)
 shape = SubResource("CapsuleShape2D_ke4cb")
+
+[node name="coffecup_broken" type="AudioStreamPlayer2D" parent="." unique_id=320145170]
+stream = ExtResource("5_lp1hw")
+
+[node name="coffecup_throw" type="AudioStreamPlayer2D" parent="." unique_id=689087688]
+stream = ExtResource("6_fuxv8")

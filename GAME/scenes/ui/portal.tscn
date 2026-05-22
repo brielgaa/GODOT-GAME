@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dkcdfnx7nes65"]
 
-[ext_resource type="Script" uid="uid://b0ybqpoj6eh1j" path="res://scenes/ui/portal.gd" id="1_npuvw"]
+[ext_resource type="Script" uid="uid://b0ybqpoj6eh1j" path="res://scripts/portal.gd" id="1_npuvw"]
 [ext_resource type="Texture2D" uid="uid://cp30dlu76sv6t" path="res://assets/ui/portal.png" id="1_tehrx"]
 [ext_resource type="PackedScene" uid="uid://37niwy6gqpmf" path="res://scenes/enemies/cena_boss.tscn" id="2_3leyl"]
+[ext_resource type="AudioStream" uid="uid://c2oajfjbbv6hv" path="res://assets/audio/portal/portal_audio.wav" id="4_454j5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_npuvw"]
 atlas = ExtResource("1_tehrx")
@@ -54,3 +55,6 @@ frame_progress = 0.46517208
 position = Vector2(3, -41)
 scale = Vector2(14.800002, 11.479999)
 shape = SubResource("RectangleShape2D_pekn6")
+
+[node name="portal_audio" type="AudioStreamPlayer2D" parent="." unique_id=1690640896]
+stream = ExtResource("4_454j5")

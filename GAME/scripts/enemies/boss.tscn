@@ -7,6 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://crpqm20vmqrs4" path="res://assets/sprites/boss/jumpingboss.png" id="4_0jhir"]
 [ext_resource type="Texture2D" uid="uid://cg48rnmr1gqqw" path="res://assets/sprites/boss/hitboss.png" id="4_rshi1"]
 [ext_resource type="Texture2D" uid="uid://cs4suvxdn8ekq" path="res://assets/sprites/boss/walkingboss.png" id="5_m77rf"]
+[ext_resource type="AudioStream" uid="uid://btfbxgp1t1ric" path="res://assets/audio/boss/boss_hit1.wav" id="8_y5e5y"]
+[ext_resource type="AudioStream" uid="uid://ptcr16w2qnam" path="res://assets/audio/boss/boss_hit2.wav" id="9_6vmwo"]
+[ext_resource type="AudioStream" uid="uid://3csnuc1oy1qg" path="res://assets/audio/boss/boss_hit3.wav" id="10_tyqvl"]
+[ext_resource type="AudioStream" uid="uid://b1mw064a6b1bh" path="res://assets/audio/boss/boss_attack.wav" id="11_h7byx"]
+[ext_resource type="AudioStream" uid="uid://relstmm5ye6x" path="res://assets/audio/boss/boss_laugh.wav" id="12_nrbxa"]
+[ext_resource type="AudioStream" uid="uid://goeyovrpriud" path="res://assets/audio/boss/boss_win.wav" id="13_1obb1"]
+[ext_resource type="AudioStream" uid="uid://8sw5kymprh0c" path="res://assets/audio/boss/boss_death.wav" id="14_n8vus"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j38c7"]
 atlas = ExtResource("2_456i5")
@@ -228,3 +235,24 @@ scale = Vector2(1, -47.01853)
 shape = SubResource("RectangleShape2D_my25f")
 
 [node name="Boss" type="Node2D" parent="." unique_id=1589968176]
+
+[node name="boss_hit1" type="AudioStreamPlayer2D" parent="." unique_id=1422629617]
+stream = ExtResource("8_y5e5y")
+
+[node name="boss_hit2" type="AudioStreamPlayer2D" parent="." unique_id=849944086]
+stream = ExtResource("9_6vmwo")
+
+[node name="boss_hit3" type="AudioStreamPlayer2D" parent="." unique_id=513420054]
+stream = ExtResource("10_tyqvl")
+
+[node name="boss_attack" type="AudioStreamPlayer2D" parent="." unique_id=863121388]
+stream = ExtResource("11_h7byx")
+
+[node name="boss_laugh" type="AudioStreamPlayer2D" parent="." unique_id=1917891639]
+stream = ExtResource("12_nrbxa")
+
+[node name="boss_win" type="AudioStreamPlayer2D" parent="." unique_id=381802313]
+stream = ExtResource("13_1obb1")
+
+[node name="boss_death" type="AudioStreamPlayer2D" parent="." unique_id=1699791514]
+stream = ExtResource("14_n8vus")

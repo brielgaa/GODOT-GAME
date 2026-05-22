@@ -15,6 +15,8 @@ var attack_range = 400.0
 
 @export var projectile_scene: PackedScene
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var audio_death = $coffecup_broken
+@onready var audio_throw = $coffecup_throw
 
 func _ready():
 	add_to_group("enemies")
@@ -43,7 +45,6 @@ func _physics_process(delta):
 			attack()
 
 	velocity.x = 0
-	# ✅ Só toca idle se não estiver atacando
 	if not is_attacking and animated_sprite.animation != "idle":
 		animated_sprite.play("idle")
 	move_and_slide()
@@ -56,6 +57,8 @@ func attack():
 		get_parent().add_child(projectile)
 		projectile.global_position = global_position
 		projectile.direction = (player.global_position - global_position).normalized()
+		# ✅ Toca som de arremesso
+		audio_throw.play()
 	is_attacking = false
 	await get_tree().create_timer(2.0).timeout
 	can_attack = true
@@ -76,5 +79,6 @@ func die():
 	is_dead = true
 	velocity.x = 0
 	animated_sprite.play("death")
+	audio_death.play()
 	await get_tree().create_timer(1.5).timeout
 	queue_free()

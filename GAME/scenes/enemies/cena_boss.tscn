@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cqw7ntxx0pqgp" path="res://assets/sprites/boss/fundo boss.png" id="3_8pm77"]
 [ext_resource type="PackedScene" uid="uid://cit7sjmvqsmgq" path="res://scenes/ui/pause_menu.tscn" id="3_pavbx"]
 [ext_resource type="PackedScene" uid="uid://he54vfxuor8u" path="res://scenes/ui/hud.tscn" id="4_a58a6"]
-[ext_resource type="PackedScene" uid="uid://de6jv3x15e50h" path="res://escada.tscn" id="5_0c3w4"]
-[ext_resource type="PackedScene" path="res://area_dano.tscn" id="5_a58a6"]
+[ext_resource type="PackedScene" uid="uid://de6jv3x15e50h" path="res://scenes/levels/escada.tscn" id="5_0c3w4"]
+[ext_resource type="PackedScene" uid="uid://cin26qub85o7k" path="res://scenes/levels/area_dano.tscn" id="5_a58a6"]
 [ext_resource type="PackedScene" uid="uid://c4s26ruu1ti7n" path="res://scripts/enemies/boss.tscn" id="6_a58a6"]
-[ext_resource type="PackedScene" uid="uid://p57614heb600" path="res://cena_vida.tscn" id="7_0c3w4"]
+[ext_resource type="PackedScene" uid="uid://p57614heb600" path="res://scenes/levels/vida.tscn" id="7_0c3w4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfh2p"]
 bg_color = Color(0, 0, 0, 1)
@@ -43,7 +43,7 @@ size = Vector2(447.6875, 54)
 size = Vector2(406.5, 54)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14qgs"]
-size = Vector2(689, 54)
+size = Vector2(782, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjwn5"]
 size = Vector2(469.375, 53)
@@ -90,7 +90,7 @@ position = Vector2(-789, -559)
 shape = SubResource("RectangleShape2D_u80dw")
 
 [node name="CollisionShape2D14" type="CollisionShape2D" parent="StaticBody2D" unique_id=659465354]
-position = Vector2(810, -289)
+position = Vector2(810, -256)
 shape = SubResource("RectangleShape2D_apqd7")
 one_way_collision = true
 
@@ -112,8 +112,10 @@ position = Vector2(-393.25, -557)
 shape = SubResource("RectangleShape2D_xvic6")
 
 [node name="CollisionShape2D11" type="CollisionShape2D" parent="StaticBody2D" unique_id=1910218646]
-position = Vector2(-98.5, 59)
+position = Vector2(-49, 56)
 shape = SubResource("RectangleShape2D_14qgs")
+one_way_collision = true
+one_way_collision_margin = 29.7
 
 [node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody2D" unique_id=1908321437]
 position = Vector2(-652.6875, 108)
@@ -180,7 +182,7 @@ position = Vector2(2080, 466.00003)
 scale = Vector2(0.92, 0.95999634)
 
 [node name="Escada4" parent="." unique_id=1673929297 instance=ExtResource("5_0c3w4")]
-position = Vector2(868, 951)
+position = Vector2(862, 976)
 scale = Vector2(0.92, 0.9999988)
 
 [node name="Escada5" parent="." unique_id=1131129942 instance=ExtResource("5_0c3w4")]

@@ -6,6 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://efqidy36mnrh" path="res://assets/sprites/enemies/zombie/idle.png" id="2_rdvt3"]
 [ext_resource type="Texture2D" uid="uid://84kkoefrxj63" path="res://assets/sprites/enemies/zombie/hit.png" id="3_irn3l"]
 [ext_resource type="Texture2D" uid="uid://cipt4wfb6rtoh" path="res://assets/sprites/enemies/zombie/walking.png" id="5_p4ex4"]
+[ext_resource type="AudioStream" uid="uid://dqvw5tk5ln6vc" path="res://assets/audio/zombie/Zombie_step1.ogg" id="7_2d4mi"]
+[ext_resource type="AudioStream" uid="uid://4qqvmutiv0ul" path="res://assets/audio/zombie/zombie_groaning.ogg" id="7_7s1wu"]
+[ext_resource type="AudioStream" uid="uid://ij4s26aaiy56" path="res://assets/audio/zombie/Zombie_step2.ogg" id="8_1j4bb"]
+[ext_resource type="AudioStream" uid="uid://eneloa4t7grl" path="res://assets/audio/zombie/zombie_dying.ogg" id="8_1m5pk"]
+[ext_resource type="AudioStream" uid="uid://da4eb8f1hb26b" path="res://assets/audio/zombie/Zombie_step3.ogg" id="9_mgq6m"]
+[ext_resource type="AudioStream" uid="uid://b5kpurji84swj" path="res://assets/audio/zombie/zombie_hit1.ogg" id="9_xb2l8"]
+[ext_resource type="AudioStream" uid="uid://b2eafmu5hii5j" path="res://assets/audio/zombie/Zombie_step4.ogg" id="10_bgl1y"]
+[ext_resource type="AudioStream" uid="uid://c23hyc0eorf4j" path="res://assets/audio/zombie/zombie_hit2.ogg" id="10_i1x1v"]
+[ext_resource type="AudioStream" uid="uid://dxo7jf23tr0m2" path="res://assets/audio/zombie/Zombie_step5.ogg" id="11_4qvqo"]
+[ext_resource type="AudioStream" uid="uid://jgnksju37oib" path="res://assets/audio/zombie/zombie_hit3.ogg" id="11_p8lyb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8kx7"]
 atlas = ExtResource("1_gl10n")
@@ -161,3 +171,33 @@ animation = &"attacking"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=301642438]
 shape = SubResource("CapsuleShape2D_08riw")
+
+[node name="zombie_step1" type="AudioStreamPlayer2D" parent="." unique_id=1510398525]
+stream = ExtResource("7_2d4mi")
+
+[node name="zombie_step2" type="AudioStreamPlayer2D" parent="." unique_id=1261093262]
+stream = ExtResource("8_1j4bb")
+
+[node name="zombie_step3" type="AudioStreamPlayer2D" parent="." unique_id=1217551485]
+stream = ExtResource("9_mgq6m")
+
+[node name="zombie_step4" type="AudioStreamPlayer2D" parent="." unique_id=2095889739]
+stream = ExtResource("10_bgl1y")
+
+[node name="zombie_step5" type="AudioStreamPlayer2D" parent="." unique_id=106365579]
+stream = ExtResource("11_4qvqo")
+
+[node name="zombie_dying" type="AudioStreamPlayer2D" parent="." unique_id=136150501]
+stream = ExtResource("8_1m5pk")
+
+[node name="zombie_hit1" type="AudioStreamPlayer2D" parent="." unique_id=347857409]
+stream = ExtResource("9_xb2l8")
+
+[node name="zombie_hit2" type="AudioStreamPlayer2D" parent="." unique_id=221436762]
+stream = ExtResource("10_i1x1v")
+
+[node name="zombie_hit3" type="AudioStreamPlayer2D" parent="." unique_id=1791937384]
+stream = ExtResource("11_p8lyb")
+
+[node name="zombie_groaning" type="AudioStreamPlayer2D" parent="." unique_id=314482620]
+stream = ExtResource("7_7s1wu")
