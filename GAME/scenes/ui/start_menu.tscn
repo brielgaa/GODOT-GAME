@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://d14mjqudxso6e" path="res://assets/ui/titulo.PNG" id="2_s1kfm"]
 [ext_resource type="Texture2D" uid="uid://ctlblt2pxh8ty" path="res://assets/ui/botao.PNG" id="3_x0g8l"]
 [ext_resource type="Texture2D" uid="uid://nthhpxg7oh16" path="res://assets/ui/botao_pressed.png" id="4_i11hm"]
+[ext_resource type="AudioStream" uid="uid://ct2yhse8m6jj" path="res://assets/audio/ui/btn_sound.wav" id="7_i11hm"]
+[ext_resource type="AudioStream" uid="uid://besjx13p7uyp2" path="res://assets/audio/ui/music_startgame.mp3" id="8_2t0al"]
 
 [node name="StartMenu" type="Control" unique_id=2130796672]
 layout_mode = 3
@@ -63,5 +65,11 @@ texture_pressed = ExtResource("4_i11hm")
 ignore_texture_size = true
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
+
+[node name="btn_sound" type="AudioStreamPlayer" parent="." unique_id=1449335536]
+stream = ExtResource("7_i11hm")
+
+[node name="music_startgame" type="AudioStreamPlayer" parent="." unique_id=2037040887]
+stream = ExtResource("8_2t0al")
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://btxm0ufe33pme" path="res://assets/ui/tryagainpressed.png" id="3_valnw"]
 [ext_resource type="Texture2D" uid="uid://cexay7m6x4r1t" path="res://assets/ui/exit.png" id="4_4pfak"]
 [ext_resource type="Texture2D" uid="uid://w2a03uhkxf07" path="res://assets/ui/exitpressed.png" id="5_g3fwn"]
+[ext_resource type="AudioStream" uid="uid://ct2yhse8m6jj" path="res://assets/audio/ui/btn_sound.wav" id="7_nh7px"]
 
 [node name="GameOver" type="Control" unique_id=1048489337]
 layout_mode = 3
@@ -64,6 +65,9 @@ texture_normal = ExtResource("4_4pfak")
 texture_pressed = ExtResource("5_g3fwn")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="btn_sound" type="AudioStreamPlayer" parent="." unique_id=1734960159]
+stream = ExtResource("7_nh7px")
 
 [connection signal="pressed" from="TRYAGAIN" to="." method="_on_tryagain_pressed"]
 [connection signal="pressed" from="EXIT" to="." method="_on_exit_pressed"]

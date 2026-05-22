@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dolytra8r86sf" path="res://assets/ui/restartpressed.png" id="3_n1s74"]
 [ext_resource type="Texture2D" uid="uid://cexay7m6x4r1t" path="res://assets/ui/exit.png" id="4_xrgte"]
 [ext_resource type="Texture2D" uid="uid://w2a03uhkxf07" path="res://assets/ui/exitpressed.png" id="5_pwal1"]
+[ext_resource type="AudioStream" uid="uid://ct2yhse8m6jj" path="res://assets/audio/ui/btn_sound.wav" id="7_n1s74"]
 
 [node name="Victory" type="Control" unique_id=1941292491]
 layout_mode = 3
@@ -64,6 +65,9 @@ texture_normal = ExtResource("4_xrgte")
 texture_pressed = ExtResource("5_pwal1")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="btn_sound" type="AudioStreamPlayer" parent="." unique_id=1404781910]
+stream = ExtResource("7_n1s74")
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_tryagain_pressed"]
 [connection signal="pressed" from="TextureButton2" to="." method="_on_exit_pressed"]

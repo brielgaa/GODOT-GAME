@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dvc6tbtr4viaj" path="res://assets/ui/pause_button.png" id="1_f6eus"]
 [ext_resource type="Texture2D" uid="uid://cq3b7bkg1hfh2" path="res://assets/ui/retomar_button.png" id="2_8uki6"]
 [ext_resource type="Texture2D" uid="uid://bhyb8ea5pwxsg" path="res://assets/ui/sair_button.png" id="3_0bnpd"]
+[ext_resource type="AudioStream" uid="uid://ct2yhse8m6jj" path="res://assets/audio/ui/btn_sound.wav" id="5_0bnpd"]
 
 [node name="PauseMenu" type="Control" unique_id=756206219]
 process_mode = 3
@@ -56,6 +57,9 @@ layout_mode = 2
 texture_normal = ExtResource("3_0bnpd")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="btn_sound" type="AudioStreamPlayer" parent="." unique_id=1911290052]
+stream = ExtResource("5_0bnpd")
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

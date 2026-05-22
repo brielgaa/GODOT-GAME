@@ -28,7 +28,7 @@ size = Vector2(873, 54)
 size = Vector2(157.55556, 54)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lmqd"]
-size = Vector2(1246.25, 22)
+size = Vector2(1237.125, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b52ro"]
 size = Vector2(793, 54)
@@ -40,7 +40,7 @@ size = Vector2(253.5, 25)
 size = Vector2(467.75, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a81b3"]
-size = Vector2(549, 12)
+size = Vector2(554.5, 27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijxin"]
 size = Vector2(1998, 54)
@@ -88,7 +88,7 @@ shape = SubResource("RectangleShape2D_4lqq5")
 one_way_collision = true
 
 [node name="CollisionShape2D14" type="CollisionShape2D" parent="StaticBody2D" unique_id=1118151315]
-position = Vector2(927, -610)
+position = Vector2(922.4375, -610)
 shape = SubResource("RectangleShape2D_0lmqd")
 one_way_collision = true
 
@@ -105,7 +105,7 @@ position = Vector2(1514, -242)
 shape = SubResource("RectangleShape2D_k3apr")
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="StaticBody2D" unique_id=481008081]
-position = Vector2(2020, -605)
+position = Vector2(2035.25, -585.5)
 shape = SubResource("RectangleShape2D_a81b3")
 
 [node name="CollisionShape2D11" type="CollisionShape2D" parent="StaticBody2D" unique_id=1249806647]
@@ -165,7 +165,7 @@ scale = Vector2(1.5499237, 1.3086115)
 projectile_scene = ExtResource("4_k3apr")
 
 [node name="Inimigo5" parent="." unique_id=499157411 instance=ExtResource("5_k3apr")]
-position = Vector2(2536, -23)
+position = Vector2(2597.0002, -43)
 scale = Vector2(1.5499237, 1.3086115)
 projectile_scene = ExtResource("4_k3apr")
 

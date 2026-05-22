@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b0ybqpoj6eh1j" path="res://scripts/portal.gd" id="1_npuvw"]
 [ext_resource type="Texture2D" uid="uid://cp30dlu76sv6t" path="res://assets/ui/portal.png" id="1_tehrx"]
-[ext_resource type="PackedScene" uid="uid://37niwy6gqpmf" path="res://scenes/enemies/cena_boss.tscn" id="2_3leyl"]
+[ext_resource type="PackedScene" uid="uid://37niwy6gqpmf" path="res://scenes/levels/cena_boss.tscn" id="2_3leyl"]
 [ext_resource type="AudioStream" uid="uid://c2oajfjbbv6hv" path="res://assets/audio/portal/portal_audio.wav" id="4_454j5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_npuvw"]
