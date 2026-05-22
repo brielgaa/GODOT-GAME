@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://i8xbmb7rha5m"]
+
+[ext_resource type="Script" uid="uid://o6oij1p2w446" path="res://scripts/victory.gd" id="1_olkpf"]
+[ext_resource type="Texture2D" uid="uid://bt1wwb5d3h63s" path="res://assets/ui/win.png" id="1_sxxsh"]
+[ext_resource type="Texture2D" uid="uid://dxeh45dssa8r" path="res://assets/ui/restart.png" id="2_olkpf"]
+[ext_resource type="Texture2D" uid="uid://dolytra8r86sf" path="res://assets/ui/restartpressed.png" id="3_n1s74"]
+[ext_resource type="Texture2D" uid="uid://cexay7m6x4r1t" path="res://assets/ui/exit.png" id="4_xrgte"]
+[ext_resource type="Texture2D" uid="uid://w2a03uhkxf07" path="res://assets/ui/exitpressed.png" id="5_pwal1"]
+
+[node name="Victory" type="Control" unique_id=1941292491]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_olkpf")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1362308554]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_sxxsh")
+expand_mode = 1
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1048433845]
+clip_contents = true
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 256.0
+offset_top = 494.00003
+offset_right = -496.0
+offset_bottom = -27.999939
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7872321, 0.66119415)
+texture_normal = ExtResource("2_olkpf")
+texture_pressed = ExtResource("3_n1s74")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton2" type="TextureButton" parent="." unique_id=542057635]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 3.0
+offset_top = 172.0
+offset_right = 403.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.78939956, 0.859114)
+texture_normal = ExtResource("4_xrgte")
+texture_pressed = ExtResource("5_pwal1")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_tryagain_pressed"]
+[connection signal="pressed" from="TextureButton2" to="." method="_on_exit_pressed"]

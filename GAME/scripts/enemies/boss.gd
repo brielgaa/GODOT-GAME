@@ -153,8 +153,16 @@ func die():
 	is_dead = true
 	velocity.x = 0
 	animated_sprite.play("death")
-	# ✅ Som de morte
+	
+	# Toca o som de morte
 	audio_death.play()
+	
 	await animated_sprite.animation_finished
-	await get_tree().create_timer(1.0).timeout
-	queue_free()
+	
+	await get_tree().create_timer(2.5).timeout
+	
+	# Verifica se o Boss ainda faz parte da árvore do jogo antes de mudar de cena
+	if get_tree() != null:
+		get_tree().change_scene_to_file("res://scenes/ui/victory.tscn")
+	else:
+		print("O Boss foi apagado antes de mudar de cena, mas o erro foi evitado!")

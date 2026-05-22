@@ -69,11 +69,11 @@ rotation = 1.5707964
 shape = SubResource("RectangleShape2D_2r50s")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=201995573]
-position = Vector2(740, 193)
+position = Vector2(731, 160)
 shape = SubResource("RectangleShape2D_j1lpk")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1840005015]
-position = Vector2(455, -218)
+position = Vector2(462, -248)
 shape = SubResource("RectangleShape2D_08fst")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=539254759]
@@ -88,7 +88,7 @@ shape = SubResource("RectangleShape2D_4lqq5")
 one_way_collision = true
 
 [node name="CollisionShape2D14" type="CollisionShape2D" parent="StaticBody2D" unique_id=1118151315]
-position = Vector2(924.125, -591)
+position = Vector2(927, -610)
 shape = SubResource("RectangleShape2D_0lmqd")
 one_way_collision = true
 
@@ -101,15 +101,15 @@ position = Vector2(2162, -211.5)
 shape = SubResource("RectangleShape2D_qfbne")
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D" unique_id=1171921092]
-position = Vector2(1533.125, -216.5)
+position = Vector2(1514, -242)
 shape = SubResource("RectangleShape2D_k3apr")
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="StaticBody2D" unique_id=481008081]
-position = Vector2(2044, -579)
+position = Vector2(2020, -605)
 shape = SubResource("RectangleShape2D_a81b3")
 
 [node name="CollisionShape2D11" type="CollisionShape2D" parent="StaticBody2D" unique_id=1249806647]
-position = Vector2(367, 192)
+position = Vector2(374, 161)
 shape = SubResource("RectangleShape2D_ijxin")
 
 [node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody2D" unique_id=1483648592]
@@ -117,7 +117,7 @@ position = Vector2(-467, -262)
 shape = SubResource("RectangleShape2D_ynw47")
 
 [node name="CollisionShape2D13" type="CollisionShape2D" parent="StaticBody2D" unique_id=2029905268]
-position = Vector2(688, 706)
+position = Vector2(696, 659)
 shape = SubResource("RectangleShape2D_tx4j6")
 
 [node name="CollisionShape2D15" type="CollisionShape2D" parent="StaticBody2D" unique_id=1315438932]
@@ -141,7 +141,7 @@ polygon = PackedVector2Array(1600, 127.7384, 2049, -276.80685, 2252, -257, 2244,
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1194872727]
 position = Vector2(9, -16)
-polygon = PackedVector2Array(1325, -215, 1723, -592, 1783, -532, 1623, -398, 1516, -313, 1413, -218)
+polygon = PackedVector2Array(1325, -215, 1723, -592, 1783, -532, 1623, -398, 1563, -352, 1413, -218)
 one_way_collision = true
 one_way_collision_margin = 50.0
 
@@ -183,7 +183,6 @@ layer = 1
 [node name="AreaMorte" parent="." unique_id=1557796283 instance=ExtResource("6_08fst")]
 position = Vector2(1284, 1477)
 scale = Vector2(43.04, 1)
-valor_dano = 999
 
 [node name="AreaEspinho" parent="." unique_id=284805108 instance=ExtResource("6_08fst")]
 position = Vector2(206, 646)
@@ -209,7 +208,7 @@ texture = ExtResource("7_6bdly")
 position = Vector2(198, -40)
 
 [node name="Personagem" parent="." unique_id=538782947 instance=ExtResource("2_5fdea")]
-position = Vector2(43, 1197)
+position = Vector2(45, 1170)
 
 [node name="Escada" parent="." unique_id=391558043 instance=ExtResource("8_4lqq5")]
 position = Vector2(1806, 570)
