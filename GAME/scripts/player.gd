@@ -184,7 +184,7 @@ func attack():
 
 	var todos_inimigos = get_tree().get_nodes_in_group("enemies")
 	for inimigo in todos_inimigos:
-		if global_position.distance_to(inimigo.global_position) < 200:
+		if global_position.distance_to(inimigo.global_position) < 240:
 			if inimigo.has_method("take_damage"):
 				inimigo.take_damage()
 
@@ -285,6 +285,6 @@ func die():
 	animated_sprite.play("death")
 	animated_sprite.flip_h = current_flip
 	audio_death.play()  # ✅
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(3).timeout
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scenes/ui/game_over.tscn")
+	get_tree().change_scene_to_file("res://scenes/ui/gameover.tscn")

@@ -216,8 +216,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_my25f"]
-size = Vector2(73.9736, 63.966526)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5e5y"]
+size = Vector2(46.022663, 44.749107)
 
 [node name="BOSS" type="CharacterBody2D" unique_id=886891651]
 position = Vector2(1, 4)
@@ -230,9 +230,9 @@ sprite_frames = SubResource("SpriteFrames_j5bhh")
 animation = &"hit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=417119210]
-position = Vector2(-0.12047542, 251.70992)
+position = Vector2(0.48191267, 400.15442)
 scale = Vector2(1, -47.01853)
-shape = SubResource("RectangleShape2D_my25f")
+shape = SubResource("RectangleShape2D_y5e5y")
 
 [node name="Boss" type="Node2D" parent="." unique_id=1589968176]
 

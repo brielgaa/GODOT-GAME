@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b4khvsapmhvej"]
 
 [ext_resource type="PackedScene" uid="uid://cit7sjmvqsmgq" path="res://scenes/ui/pause_menu.tscn" id="3_nsrm0"]
-[ext_resource type="PackedScene" uid="uid://131ui1ygw2vm" path="res://cena_fase.tscn" id="10_qxy0u"]
+[ext_resource type="PackedScene" uid="uid://131ui1ygw2vm" path="res://scenes/levels/cena_fase.tscn" id="10_qxy0u"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6iamk"]
 distance = -36.0

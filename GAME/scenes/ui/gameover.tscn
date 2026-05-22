@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://q8prb28rhfaw"]
+
+[ext_resource type="Script" uid="uid://s1yo7scnwpfl" path="res://scripts/gameover.gd" id="1_g3fwn"]
+[ext_resource type="Texture2D" uid="uid://ds2807tx1rgyq" path="res://assets/ui/gameover fundo.png" id="1_xg0lb"]
+[ext_resource type="Texture2D" uid="uid://0xn37ey0sngp" path="res://assets/ui/tryagain.png" id="2_sxuf3"]
+[ext_resource type="Texture2D" uid="uid://btxm0ufe33pme" path="res://assets/ui/tryagainpressed.png" id="3_valnw"]
+[ext_resource type="Texture2D" uid="uid://cexay7m6x4r1t" path="res://assets/ui/exit.png" id="4_4pfak"]
+[ext_resource type="Texture2D" uid="uid://w2a03uhkxf07" path="res://assets/ui/exitpressed.png" id="5_g3fwn"]
+
+[node name="GameOver" type="Control" unique_id=1048489337]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g3fwn")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1579559555]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xg0lb")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TRYAGAIN" type="TextureButton" parent="." unique_id=797855981]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_sxuf3")
+texture_pressed = ExtResource("3_valnw")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="EXIT" type="TextureButton" parent="." unique_id=722068638]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.0
+offset_top = 43.0
+offset_right = 199.0
+offset_bottom = 143.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_4pfak")
+texture_pressed = ExtResource("5_g3fwn")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="pressed" from="TRYAGAIN" to="." method="_on_tryagain_pressed"]
+[connection signal="pressed" from="EXIT" to="." method="_on_exit_pressed"]

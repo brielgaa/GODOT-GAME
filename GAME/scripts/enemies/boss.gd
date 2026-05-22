@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 var health = 20
-var speed = 50.0
-var jump_force = -400.0
+var speed = 100.0
+var jump_force = -600.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export var distancia_ataque = 210.0
@@ -15,6 +15,7 @@ var is_dead = false
 var is_hurt = false
 var is_attacking = false
 var pode_atacar = true
+var barra_vida: ProgressBar
 
 var laugh_timer = 0.0
 var laugh_interval = 0.0
@@ -35,6 +36,10 @@ func _ready():
 	add_to_group("enemies")
 	player = get_tree().get_first_node_in_group("player")
 	_sortear_proximo_laugh()
+	barra_vida = get_tree().get_first_node_in_group("barra_boss")
+	if barra_vida != null:
+		barra_vida.max_value = health # A barra tem que saber que o máximo é 20, e não 100!
+		barra_vida.value = health
 
 func _sortear_proximo_laugh():
 	laugh_interval = randf_range(6.0, 14.0)
@@ -116,16 +121,27 @@ func atacar():
 	pode_atacar = true
 
 func take_damage():
-	if is_dead or is_hurt:
-		return
+	if is_dead or is_hurt: return
 	health -= 1
 	is_hurt = true
-
-	# ✅ Som de hit alternado
+	
+	# Atualiza a barra de vida
+	if barra_vida != null:
+		barra_vida.value = health
+		
+	# Toca o som de hit alternado
 	hit_sounds[hit_sound_index].play()
 	hit_sound_index = (hit_sound_index + 1) % hit_sounds.size()
 
+	# Toca a animação
 	animated_sprite.play("hit")
+
+	# Verifica se morreu ou se apenas tomou dano
+	if health <= 0:
+		die()
+	else:
+		await animated_sprite.animation_finished
+		is_hurt = false
 
 	if health <= 0:
 		die()
