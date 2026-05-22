@@ -23,7 +23,7 @@
 ### Sobrevivência
 
 - O personagem possui um número limitado de **vidas**. Ao perder todas, o jogo acaba.
-- Ao longo da fase é possível coletar **itens de recuperação de vida** e **munição (livros)** espalhados pelo cenário.
+- Ao longo da fase é possível coletar **itens de recuperação de vida** .
 
 ---
 
@@ -31,12 +31,11 @@
 
 | Tecla | Ação |
 |---|---|
-| `A D` | Mover para a esquerda / direita |
+| `<- ->` | Mover para a esquerda / direita |
 | `Espaço` | Pular |
 | `Z` | Ataque com mochila (curto alcance) |
 | `X` | Arremessar livro (longo alcance) |
 | `Esc` | Pausar a partida |
-| `Esc` | Voltar ao menu |
 
 ---
 
@@ -61,6 +60,7 @@
 |---|---|
 | **Tela Inicial** | Apresenta o título e a opção de iniciar o jogo |
 | **Fase 1** | Nível principal — o percurso até a universidade |
+| **Fase 1** | Fase onde o personagem enfreta o chefão final |
 | **Pausa** | Pode ser ativada a qualquer momento durante a fase |
 | **Game Over** | Exibida quando todas as vidas se esgotam |
 | **Vitória** | Após derrotar o chefão, o estudante atravessa os portões da universidade |
@@ -88,17 +88,16 @@
 
 ## 🌍 Assets
 
-> *(Serão adicionados os assets)*
-
 | Asset | Fonte / Link |
 |---|---|
-| Sprites do personagem | — |
-| Sprites dos inimigos | — |
-| Cenário / Backgrounds | — |
-| Trilha sonora principal | — |
-| Trilha da tela inicial | — |
-| Trilha de game over | — |
-| Efeitos sonoros | — |
+| Sprites do personagem | Gerado com IA — [Gemini](https://gemini.google.com) |
+| Sprites dos inimigos | Gerado com IA — [Gemini](https://gemini.google.com) |
+| Cenário / Backgrounds | Gerado com IA — [Gemini](https://gemini.google.com) |
+| Trilha sonora principal | [Pixabay](https://pixabay.com/music) |
+| Trilha da tela inicial | [Pixabay](https://pixabay.com/music) |
+| Trilha da fase do boss | [Pixabay](https://pixabay.com/music) |
+| Efeitos sonoros (inimigos/player) | [The Sounds Resource](https://sounds.spriters-resource.com) |
+| Efeitos sonoros (ambiente) | [Minecraft Wiki — Sound Effects](https://minecraft.wiki/w/Category:Sound_effects) |
 
 ---
 
@@ -112,7 +111,7 @@
 
 ## 🌐 Site e Distribuição
 
-- **Página no itch.io:** *(inserir URL)*
+- **Página no itch.io:** **
 
 ---
 
@@ -120,10 +119,10 @@
 
 | Nome | Função |
 |---|---|
-| *Gabriel da Silva Bitencourt* | *(função)* |
-| *Gabriel Halim* | *(função)* |
-| *Gustavo* | *(função)* |
-| *Thiago* | *(função)* |
+| *Gabriel da Silva Bitencourt* | *Gerente* |
+| *Gabriel Halim* | *membro* |
+| *Gustavo* | *membro* |
+| *Thiago* | *membro* |
 
 ---
 
