@@ -45,8 +45,6 @@
 
 - **🧟 Zumbi da Privação de Sono** — Inimigos lentos que representam o cansaço acumulado. Fáceis individualmente, perigosos em grupo.
 - **☕ Xícara de Café** — Projéteis ou inimigos saltitantes e frenéticos. O que deveria ajudar, agora atrapalha.
-- **📜 Prova Voadora** — Aparecem de surpresa, voando em direção ao personagem.
-- **⏰ Despertador Gigante** — Obstáculo de grande porte que bloqueia o caminho e atordoa o estudante.
 
 ### Chefão Final
 
@@ -60,7 +58,7 @@
 |---|---|
 | **Tela Inicial** | Apresenta o título e a opção de iniciar o jogo |
 | **Fase 1** | Nível principal — o percurso até a universidade |
-| **Fase 1** | Fase onde o personagem enfreta o chefão final |
+| **Fase 2** | Fase onde o personagem enfreta o chefão final |
 | **Pausa** | Pode ser ativada a qualquer momento durante a fase |
 | **Game Over** | Exibida quando todas as vidas se esgotam |
 | **Vitória** | Após derrotar o chefão, o estudante atravessa os portões da universidade |
@@ -73,16 +71,15 @@
 
 | Trilha | Uso |
 |---|---|
-| BGM Principal | Tocada durante a fase de jogo |
-| BGM Tela Inicial | Toca na tela de abertura |
-| BGM Game Over | Toca na tela de derrota |
+| Trilha sonora principal | [Pixabay](https://pixabay.com/music) |
+| Trilha da tela inicial | [Pixabay](https://pixabay.com/music) |
+| Trilha da fase do boss | [Pixabay](https://pixabay.com/music) |
 
 ### Efeitos Sonoros (SFX)
 
-- Impacto da mochila no inimigo
-- Som de arremesso de livro
-- Som de dano recebido (perda de vida)
-- Sons característicos de cada inimigo
+
+| Efeitos sonoros (inimigos/player) | [The Sounds Resource](https://sounds.spriters-resource.com) |
+| Efeitos sonoros (ambiente) | [Minecraft Wiki — Sound Effects](https://minecraft.wiki/w/Category:Sound_effects) |
 
 ---
 
@@ -93,11 +90,6 @@
 | Sprites do personagem | Gerado com IA — [Gemini](https://gemini.google.com) |
 | Sprites dos inimigos | Gerado com IA — [Gemini](https://gemini.google.com) |
 | Cenário / Backgrounds | Gerado com IA — [Gemini](https://gemini.google.com) |
-| Trilha sonora principal | [Pixabay](https://pixabay.com/music) |
-| Trilha da tela inicial | [Pixabay](https://pixabay.com/music) |
-| Trilha da fase do boss | [Pixabay](https://pixabay.com/music) |
-| Efeitos sonoros (inimigos/player) | [The Sounds Resource](https://sounds.spriters-resource.com) |
-| Efeitos sonoros (ambiente) | [Minecraft Wiki — Sound Effects](https://minecraft.wiki/w/Category:Sound_effects) |
 
 ---
 
@@ -111,7 +103,7 @@
 
 ## 🌐 Site e Distribuição
 
-- **Página no itch.io:** **
+- **Página no itch.io:**https://brielgaa.itch.io/o-estudante-universitrio**
 
 ---
 
