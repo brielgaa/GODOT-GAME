@@ -67,7 +67,7 @@
 
 ## 🔊 Áudio
 
-### Trilha Sonora (BGM)
+### Trilha Sonora (Pixabay)
 
 | Trilha | Uso |
 |---|---|
@@ -77,7 +77,8 @@
 
 ### Efeitos Sonoros (SFX)
 
-
+| Efeito | Uso |
+|---|---|
 | Efeitos sonoros (inimigos/player) | [The Sounds Resource](https://sounds.spriters-resource.com) |
 | Efeitos sonoros (ambiente) | [Minecraft Wiki — Sound Effects](https://minecraft.wiki/w/Category:Sound_effects) |
 
