@@ -351,7 +351,7 @@ shape = SubResource("CapsuleShape2D_a38lo")
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1220051515]
 limit_left = -180
 limit_top = -1000
-limit_right = 2820
+limit_right = 2951
 limit_bottom = 1800
 limit_smoothed = true
 position_smoothing_enabled = true
