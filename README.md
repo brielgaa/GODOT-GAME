@@ -103,7 +103,7 @@
 
 ## 🌐 Site e Distribuição
 
-- **Página no itch.io:**https://brielgaa.itch.io/o-estudante-universitrio**
+- **Página no itch.io: **https://brielgaa.itch.io/o-estudante-universitrio**
 
 ---
 
