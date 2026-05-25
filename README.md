@@ -48,7 +48,7 @@
 
 ### Chefão Final
 
-- **🧾 Boleto da Faculdade** — O grande vilão. Um boleto monstruoso com braços e pernas, determinado a destruir o futuro financeiro do aluno. Possui padrão de ataque próprio e alta resistência. Derrote-o para cruzar os portões da universidade e vencer o jogo.
+- **🧾 Boleto da Faculdade** — O grande vilão. Um boleto monstruoso, determinado a destruir o futuro financeiro do aluno. Possui padrão de ataque próprio e alta resistência. Derrote-o para cruzar os portões da universidade e vencer o jogo.
 
 ---
 
