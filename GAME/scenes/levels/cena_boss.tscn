@@ -54,6 +54,7 @@ size = Vector2(469.375, 53)
 size = Vector2(1593.125, 69)
 
 [node name="Boss" type="Node2D" unique_id=622330574]
+position = Vector2(132, 5)
 script = ExtResource("1_r52uj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1828821400]
