@@ -1,3 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+scenes/player.tscn4416989684.tmp
+scenes/player.tscn4424373539.tmp
